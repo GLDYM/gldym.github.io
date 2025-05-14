@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/cocoa_1.png">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/cocoa_2.png">
 <meta property="article:published_time" content="2025-05-11T14:59:37.000Z">
-<meta property="article:modified_time" content="2025-05-11T14:59:37.000Z">
+<meta property="article:modified_time" content="2025-05-14T03:20:00.000Z">
 <meta property="article:author" content="Polaris_Light">
 <meta property="article:tag" content="Games">
 <meta property="article:tag" content="Animal-Spa">
@@ -318,7 +318,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.5k 字
         
       </span>
     
@@ -329,7 +329,7 @@ p.spoiler {
         
         
         
-          17 分钟
+          21 分钟
         
       </span>
     
@@ -368,17 +368,40 @@ p.spoiler {
           <article class="post-content mx-auto">
             <h1 id="seo-header">动物温泉，从野蛮生长到世外桃源</h1>
             
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2025年5月14日 上午
+                  
+                
+              </p>
+            
             
               <div class="markdown-body">
                 
-                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h1 id="动物温泉，从野蛮生长到世外桃源"><a href="#动物温泉，从野蛮生长到世外桃源" class="headerlink" title="动物温泉，从野蛮生长到世外桃源"></a>动物温泉，从野蛮生长到世外桃源</h1><p>本文讲述的是<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/3404470/_/">《线条小狗：动物温泉》</a>的一些游玩技巧。游戏本身比较轻松，因此这些技巧都不是必选的；有些技巧也可能随着版本更新而不再是较优解。</p>
-<p>对于需要解锁相应的地图才能放置的特殊装饰品，文内会以“<strong>（关卡 2）</strong>”等标识指明。例如“（关卡 2 ）秋千”表明秋千需要解锁关卡 2 樱花城市后才能获得。</p>
-<p>来源自其他玩家的经验同样会在行前标注。</p>
-<p>本文基于 Animal Spa DEMO <strong>v0.51</strong> 与正式版前瞻写作。</p>
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h1 id="动物温泉，从野蛮生长到世外桃源"><a href="#动物温泉，从野蛮生长到世外桃源" class="headerlink" title="动物温泉，从野蛮生长到世外桃源"></a>动物温泉，从野蛮生长到世外桃源</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li>本文讲述的是<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/3404470/_/">《线条小狗：动物温泉》</a>的游戏内机制、赚钱赚星与布局策略。</li>
+<li>对于需要解锁相应的地图才能放置的特殊装饰品，文内会以“<strong>（关卡 2）</strong>”等标识指明。例如“（关卡 2 ）秋千”表明秋千需要解锁关卡 2 樱花城市后才能获得。</li>
+<li>来源自其他玩家的经验同样会在行前标注。</li>
+<li>本文当前的基准版本为 Animal Spa <strong>v1.0</strong>。</li>
+<li>游戏本身比较轻松，因此即使不应用这些策略也能获得比较好的游戏体验；部分策略也可能随着版本更新与游戏理解的深入而不再是最优解。</li>
+</ul>
 <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h3 id="顾客喜好速查表"><a href="#顾客喜好速查表" class="headerlink" title="顾客喜好速查表"></a>顾客喜好速查表</h3><p><img src="/posts/Animal-Spa/%E9%A1%BE%E5%AE%A2%E5%96%9C%E5%A5%BD%E9%80%9F%E6%9F%A5%E8%A1%A8.png" srcset="/img/loading.gif" lazyload alt="顾客喜好速查表"></p>
+<h3 id="给钱给星星机制"><a href="#给钱给星星机制" class="headerlink" title="给钱给星星机制"></a>给钱给星星机制</h3><ul>
+<li>入场：看运营前台的设置。</li>
+<li>离场：相对比较复杂，看下面代码自己算吧。<code>tier</code>是浴池的等级，从 0 开始。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python">feeList: <span class="hljs-built_in">list</span> = []<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add_num</span>(<span class="hljs-params">tier: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-literal">None</span>:<br>	num: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.0</span>; <br>    num = <span class="hljs-built_in">sum</span>(feeList) <span class="hljs-comment"># 之前收入之和</span><br>	num += <span class="hljs-number">3</span> + tier <span class="hljs-comment"># 加 3 和 浴池等级</span><br>	num /= <span class="hljs-built_in">len</span>(feeList) + <span class="hljs-number">1</span> <span class="hljs-comment"># 算均值</span><br>	num *= <span class="hljs-number">1.5</span> <span class="hljs-keyword">if</span> feeList <span class="hljs-comment"># 如果是第二个浴池以后乘 1.5</span><br>	feeList.Append(num);<br><br><span class="hljs-comment"># 调用多次 add_num()</span><br><br>total_money = <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">int</span>(feeList)) <span class="hljs-comment"># 最终收入，取整</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>售货机：给钱等于售货机的等级。如果满足食物喜好，给钱变为 1.5 倍，取整。</li>
+<li>星星：如果满足温度喜好有 0.1 概率获得星星，如果满足食物喜好同样有 0.1 概率获得星星，二者分开计算。传单概率翻倍。</li>
+<li>VIP 浴池给钱：时间之和除以 4，取整。</li>
+<li>VIP 浴池给星星：普通服务概率为 0.05 + 0.01 * 耐力。特殊服务如果满足食物喜好概率为 0.1 + 0.01 * 耐力，不满足不会给。传单概率翻倍。</li>
+</ul>
 <h3 id="顾客行为流程图"><a href="#顾客行为流程图" class="headerlink" title="顾客行为流程图"></a>顾客行为流程图</h3><p><img src="/posts/Animal-Spa/%E9%A1%BE%E5%AE%A2%E8%A1%8C%E4%B8%BA%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="顾客行为"></p>
 <ul>
-<li>这是一个马尔科夫链，但是各个概率都是可变且未知的。</li>
+<li>这是一个马尔科夫链，但是各个概率都是可变且未知的。（？）</li>
 <li>如果整个浴场不够三个（顾客不讨厌的）浴池，那么“浴池1”或“浴池2”会被跳过。</li>
 <li>顾客在某轮买东西中不会去<strong>同一名字</strong>的售货机，无论是否买到（缺货或者恰好有动物占据），直到重新回到浴池。<ul>
 <li>比如一只兔子泡了三次浴池后，出来去了“饮水机（小型）”，那么无论是否买到，后面都不会再去“饮水机（小型）”了 ；直到兔子又泡回浴池，又出来买东西才会去“饮水机（小型）”。</li>
@@ -390,14 +413,14 @@ p.spoiler {
 </ul>
 <h2 id="前期-拿钥匙-效率为主"><a href="#前期-拿钥匙-效率为主" class="headerlink" title="前期 &amp; 拿钥匙 - 效率为主"></a>前期 &amp; 拿钥匙 - 效率为主</h2><ul>
 <li>下面的技巧适用于长期存档的快速起步，或者只是想拿某个图的钥匙。</li>
-<li>这个阶段的目标就是尽可能快地拿到 24 个奖牌，拿到足够的钱和星星。</li>
-<li>布局基本是不重要的（也没什么钱摆好看）。</li>
+<li>这个阶段的目标是尽快拿到 24 个奖牌，积攒尽可能多的钱和星星。</li>
+<li>布局不是很重要（也没什么钱摆好看）。</li>
 <li>除了开局的买四卖二外，其他技巧都比较常规，算是注意事项。</li>
 </ul>
 <h3 id="神秘的开局方法"><a href="#神秘的开局方法" class="headerlink" title="神秘的开局方法"></a>神秘的开局方法</h3><ul>
 <li>开局先买 4 个 200 块小浴池，再卖掉 2 个（快速得到奖牌，方便买售货机；剩下 3 个浴池保证单个顾客收入），买一个小饮水机、一个大饮水机（补货）。浴池设置成 34 度热水（第二个温度，避免顾客讨厌，根据实际图鉴调整）。</li>
 <li>挂机到 3 块奖牌后，把小浴池换成大浴池，摆水果浴袋（星星）。挂机到 5 块奖牌后，买运营前台，把入场费设置成 3 块，并适当补充浴池和毛巾架。</li>
-<li>适当补充不同种类的售货机（补货、钱和星星）。有钱就买楼层和 200 块小浴池（做奖牌），如果是拿钥匙建议堵死楼梯。</li>
+<li>适时更换高级浴池，并补充不同种类的售货机（补货、钱和星星）。有钱就买楼层和 200 块小浴池（做奖牌），如果是拿钥匙建议堵死楼梯。</li>
 <li>星星优先级为 运营前台 &gt; 交流用电脑（如果可以交流）&gt; 传单前台（最好有六速员工） &gt; 新员工 &gt; 升级员工（DEMO 还没有员工培训），如果是拿钥匙其他不碰。</li>
 </ul>
 <h2 id="中后期-美观为主"><a href="#中后期-美观为主" class="headerlink" title="中后期 - 美观为主"></a>中后期 - 美观为主</h2><ul>
@@ -421,12 +444,13 @@ p.spoiler {
 <h4 id="特殊设施"><a href="#特殊设施" class="headerlink" title="特殊设施"></a>特殊设施</h4><ul>
 <li>公告板<ul>
 <li>可以摆在门口&#x2F;一排柜子的旁边&#x2F;员工休息室里面。</li>
-<li>感谢信及时点掉，中后期非常缺星星。</li>
+<li>感谢信及时点掉，星星重要来源之一。</li>
 </ul>
 </li>
 <li>浴池<ul>
 <li>靠墙放比放在中间要好布局许多，避免堵路闹心（尤其露天浴池）。</li>
 <li>露天浴池比室内浴室普遍要好看一些；但是会大一号。</li>
+<li>高级的浴池给的钱稍微多一点。</li>
 <li>浴池的最优解是 34 度热水+水果浴袋。But who cares?</li>
 </ul>
 </li>
@@ -446,8 +470,8 @@ p.spoiler {
 </ul>
 </li>
 <li>交流用电脑<ul>
+<li>星星重要来源之一，所以如果可以交流及时点掉。</li>
 <li>可以用来模拟网吧。</li>
-<li>如果可以交流及时点掉。</li>
 </ul>
 </li>
 <li>运营前台<ul>
@@ -455,16 +479,20 @@ p.spoiler {
 </ul>
 </li>
 <li>传单前台<ul>
+<li>传单能提高一倍的得星星概率，因此务必要放。你的星星就靠传单了。</li>
 <li>务必放在大门口，不然会看到员工天天跑楼梯。</li>
 <li>传单前台的地毯不被顾客视为可以通过的路，小心把路堵住了。</li>
+<li>一次拿的传单数量为 10 + 2 * 耐力，因此发传单的员工耐力越高越好。</li>
 <li>（来自 哈）发传单的员工最好在 6 速度以上，不然经常送不到。</li>
 </ul>
 </li>
 <li>沐浴用品商店<ul>
-<li>沐浴用品只值 1 块，而且和员工属性无关，因此在花洒区域前摆一个就足够。</li>
+<li>沐浴用品使得出门给的钱变为 1.1 倍，而且售货速度只与最后一个属性（耐力）有关。</li>
+<li>如果看不上这点钱的话，在花洒区域旁边放一个就行了。</li>
 </ul>
 </li>
 <li>VIP 浴池<ul>
+<li>钱最优解是时间拉满，星星最优解是俩普通服务 + 水果。</li>
 <li>VIP 浴池只有顾客经过才有可能进去。</li>
 <li>因此不要把 VIP 浴池放到楼层的角落里面，而是放到楼层中间、夹在浴池区域&#x2F;售货机区域&#x2F;楼梯之间或它们附近。</li>
 </ul>
@@ -632,6 +660,11 @@ p.spoiler {
           <div>2025年5月11日</div>
         </div>
       
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2025年5月14日</div>
+        </div>
       
       
         <div class="license-meta-item">
