@@ -27,7 +27,6 @@
 <meta property="og:description" content="《线条小狗：动物温泉》的游玩布局策略合集">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/%E9%A1%BE%E5%AE%A2%E5%96%9C%E5%A5%BD%E8%A1%8C%E4%B8%BA%E9%80%9F%E6%9F%A5%E8%A1%A8V3.png">
-<meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/%E9%A1%BE%E5%AE%A2%E8%A1%8C%E4%B8%BA%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/%E7%A4%BA%E6%84%8F%E5%9B%BE2.png">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/official_2.png">
@@ -396,7 +395,9 @@ p.spoiler {
             
               <div class="markdown-body">
                 
-                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h1 id="动物温泉，从野蛮生长到世外桃源"><a href="#动物温泉，从野蛮生长到世外桃源" class="headerlink" title="动物温泉，从野蛮生长到世外桃源"></a>动物温泉，从野蛮生长到世外桃源</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+                <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css"><h1 id="动物温泉，从野蛮生长到世外桃源"><a href="#动物温泉，从野蛮生长到世外桃源" class="headerlink" title="动物温泉，从野蛮生长到世外桃源"></a>动物温泉，从野蛮生长到世外桃源</h1><iframe src="https://gamer2810.github.io/steam-miniprofile/?accountId=76561198857827726&appID=3404470&interactive=true&vanityId=polaris_light&lang=schinese" style="border:0px #ffffff none;" name="myiFrame" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" height="400px" width="600px" allowfullscreen></iframe>
+
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
 <li>本文讲述的是<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/3404470/_/">《线条小狗：动物温泉》</a>的游戏内机制、赚钱赚星与布局策略。</li>
 <li>对于需要解锁相应的地图才能放置的特殊装饰品，文内会以“<strong>（关卡 2）</strong>”等标识指明。例如“（关卡 2 ）秋千”表明秋千需要解锁关卡 2 樱花城市后才能获得。</li>
 <li>来源自其他玩家的经验同样会在行前标注。</li>
@@ -462,19 +463,30 @@ p.spoiler {
 <li>进店的每 4-8s 生成一次，必定进店；浴场每多一层 -0.5s，不会被发传单，如果浴场的总人数超过容量则跳过本次生成。4s</li>
 <li>容量为浴场所有<strong>设了温度的</strong>浴池容纳人数的总和 * 运营前台的系数，3: 1.1, 5:0.8, 7:0.5</li>
 </ul>
-<h3 id="顾客行为流程图"><a href="#顾客行为流程图" class="headerlink" title="顾客行为流程图"></a>顾客行为流程图</h3><p><img src="/posts/Animal-Spa/%E9%A1%BE%E5%AE%A2%E8%A1%8C%E4%B8%BA%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="顾客行为"></p>
+<h3 id="顾客行为流程图"><a href="#顾客行为流程图" class="headerlink" title="顾客行为流程图"></a>顾客行为流程图</h3><pre><code class=" Mermaid">%%&#123;init: &#123;&quot;flowchart&quot;: &#123;&quot;defaultRenderer&quot;: &quot;elk&quot;&#125;&#125; &#125;%%
+flowchart LR
+    A&#123;&#123;&quot;设定矫正 nM、nL&quot;&#125;&#125; --&gt; B[&quot;进店上楼至目标楼层&quot;]
+    B --&gt; C&#123;&quot;nL &lt;= 0&quot;&#125;
+    C -- 是 --&gt; D[/&quot;下楼还毛巾离店&quot;/]
+    C -- 否 --&gt; E&#123;&quot;nM &lt;= M&quot;&#125;
+    E -- 否 --&gt; F[&quot;泡澡&quot;]
+    E -- 是 --&gt; I[&quot;买东西 x N&quot;]
+    F -- 经过 S --&gt; H([&quot;nL -= S、nM -= S&quot;])
+    I -- 直至 nM = M --&gt; J[[&quot;清除浴池售货机记录&quot;]]
+    I -- 找不到 --&gt; F
+    H --&gt; C
+    J --&gt; C
+    F -- 找不到 --&gt; M[/&quot;上下楼找或者还毛巾离店&quot;/]
+
+</code></pre>
+
+
+
 <ul>
-<li>这张图只是一张示意图，实际上不是这么计算的。</li>
+<li>实际代码的实现与这张图存在差异。S:M:L &#x3D; 1:2:5，初始矫正为 nM &#x3D; 5 * (1 + 0.01 * 浴池数量) * M，nL &#x3D; 5 * (1 + 0.01 * 浴池数量) * L。</li>
 <li>顾客去每层楼的比例数列是 0.51, 0.24, 0.12, 0.06, 0.06，按照每层楼浴池数量降序排序；若规划桌手动设置了按照54321的顺序。顾客进门先去浴池最多的一层，如果这层当前的顾客比例超过了数列的对应项（0.51）则去次多的层，以此类推。</li>
-<li>这个链的运行路径和次数与整个浴场的浴池数量相关。顾客<strong>最多</strong>经过的浴池数量为 5 * (1 + 0.01 * 浴池数量) 向上取整。如果中途寻路失败可能会提前离开。</li>
-<li>如果整个浴场不够三个（顾客不讨厌的）浴池，那么“浴池1”或“浴池2”会被跳过。</li>
-<li>同一个浴池某个顾客只会去一次。</li>
-<li>顾客在某轮买东西中不会去<strong>同一名字</strong>的售货机，无论是否买到（缺货或者恰好有动物占据），直到重新回到浴池。<ul>
-<li>比如一只兔子泡了三次浴池后，出来去了“饮水机（小型）”，那么无论是否买到，后面都不会再去“饮水机（小型）”了 ；直到兔子又泡回浴池，又出来买东西才会去“饮水机（小型）”。</li>
-</ul>
-</li>
-<li>拿毛巾一般在进店后，如果缺货或者恰好有动物占据会换一个毛巾架；实在没毛巾则会先跳过，直到有毛巾再去拿。</li>
-<li>还毛巾永远在离开前；如果不放毛巾回收箱，顾客会顶着毛巾走。</li>
+<li>同一个浴池与<strong>同名</strong>售货机顾客只会去一次（无论是否正常进入&#x2F;买到而扣时间），直到清除记录。</li>
+<li>拿毛巾一般在第一次泡澡前，每次泡澡前都会检查头上有无毛巾，没有就先去拿。</li>
 <li>凳子、花洒、VIP 浴池都是顾客经过后会进去，不会主动寻路。</li>
 <li>可以画一个 楼梯→毛巾架→浴池→售货机→回收箱→楼梯 的圈，基本就是顾客的移动路线。圈之外的地方顾客是不会去的。使用这个方法布局，就可以轻松控制顾客会去的设施和不会去的设施，得到想要的效果。<br><img src="/posts/Animal-Spa/%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="示意图，黄色是动线，绿色会去，红色不会去"></li>
 </ul>
