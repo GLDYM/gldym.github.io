@@ -276,7 +276,7 @@ p.spoiler {
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" 
      style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
@@ -373,7 +373,7 @@ p.spoiler {
               <div class="markdown-body">
                 
                 <link rel="stylesheet" type="text&#x2F;css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.3.1/dist/hexo-tag-hint.min.css">
-    <div id="aplayer-YAEKXwRa" class="aplayer aplayer-tag-marker meting-tag-marker"
+    <div id="aplayer-TVyNyXib" class="aplayer aplayer-tag-marker meting-tag-marker"
          data-id="1372323297" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
     ></div>
 
@@ -554,6 +554,21 @@ p.spoiler {
 
   
 
+
+
+  <script>
+  Fluid.utils.createScript('https://unpkg.com/mermaid@10.9.3/dist/mermaid.min.js', function() {
+    mermaid.initialize({});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 

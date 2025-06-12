@@ -267,7 +267,7 @@ p.spoiler {
 
   
 
-<div id="banner" class="banner" parallax=true
+<div id="banner" class="banner" 
      style="background: url('/img/banner.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
@@ -560,6 +560,21 @@ p.spoiler {
 
   
 
+
+
+  <script>
+  Fluid.utils.createScript('https://unpkg.com/mermaid@10.9.3/dist/mermaid.min.js', function() {
+    mermaid.initialize({});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
 
 
 
