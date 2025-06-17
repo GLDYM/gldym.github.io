@@ -5,14 +5,14 @@
 
 .svg path {
   stroke: white;
-  stroke-width: 0.4mm;
+  stroke-width: 0.3mm;
   stroke-linecap: round;
   stroke-dasharray: var(--l);
   stroke-dashoffset: var(--l);
   fill: none;
   fill-rule: nonzero;
-  animation: stroke 10s forwards;
-  -webkit-animation: stroke 10s forwards;
+  animation: stroke 7s forwards;
+  -webkit-animation: stroke 7s forwards;
 }
 
 @keyframes stroke {
