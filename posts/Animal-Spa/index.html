@@ -59,7 +59,7 @@
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/leuco_1.gif">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa/J9256_1.gif">
 <meta property="article:published_time" content="2025-05-11T14:59:37.000Z">
-<meta property="article:modified_time" content="2025-06-14T12:03:30.419Z">
+<meta property="article:modified_time" content="2025-06-25T05:11:45.768Z">
 <meta property="article:author" content="Polaris_Light">
 <meta property="article:tag" content="Games">
 <meta property="article:tag" content="Animal-Spa">
@@ -337,7 +337,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.5k 字
+          4.6k 字
         
       </span>
     
@@ -348,7 +348,7 @@ p.spoiler {
         
         
         
-          38 分钟
+          39 分钟
         
       </span>
     
@@ -390,7 +390,7 @@ p.spoiler {
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年6月14日 晚上
+                    本文最后更新于 2025年6月25日 下午
                   
                 
               </p>
@@ -402,17 +402,19 @@ p.spoiler {
 
 <ul>
 <li><strong>点击上方添加我好友！ 897561998</strong></li>
+<li>访问 <a href="https://gldym.github.io/posts/Animal-Spa">https://gldym.github.io/posts/Animal-Spa</a> 以获取最佳阅读体验！</li>
 </ul>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
 <li>本文讲述的是<a target="_blank" rel="noopener" href="https://store.steampowered.com/app/3404470/_/">《线条小狗：动物温泉》</a>的游戏内机制、赚钱赚星与布局策略。</li>
 <li>对于需要解锁相应的地图才能放置的特殊装饰品，文内会以“<strong>（关卡 2）</strong>”等标识指明。例如“（关卡 2 ）秋千”表明秋千需要解锁关卡 2 樱花城市后才能获得。</li>
 <li>来源自其他玩家的经验同样会在行前标注。</li>
-<li>本文当前的基准游戏版本为 Maltese’s Fluffy Onsen <strong>v1.1d</strong>。</li>
+<li>本文当前的基准游戏版本为 Maltese’s Fluffy Onsen <strong>v1.11d</strong>。</li>
 <li>游戏本身比较轻松，因此即使不应用这些策略也能获得比较好的游戏体验；部分策略也可能随着版本更新与游戏理解的深入而不再是最优解。</li>
 </ul>
 <h2 id="新手-Q-A"><a href="#新手-Q-A" class="headerlink" title="新手 Q &amp; A"></a>新手 Q &amp; A</h2><h3 id="我的存档不小心删除了，怎么找回啊？"><a href="#我的存档不小心删除了，怎么找回啊？" class="headerlink" title="我的存档不小心删除了，怎么找回啊？"></a>我的存档不小心删除了，怎么找回啊？</h3><ul>
 <li>没法找回，但是你可以防患于未然。</li>
-<li>存档在 <code>C:\Users\&lt;username&gt;\AppData\LocalLow\Sinkholestudio</code>。<code>&lt;username&gt;</code>是你计算机的用户名。</li>
+<li>Windows 存档在 <code>C:\Users\&lt;username&gt;\AppData\LocalLow\Sinkholestudio</code>。<code>&lt;username&gt;</code>是你计算机的用户名。</li>
+<li>Mac 存档在<code>/Users/&lt;username&gt;/Library/Application Support/SinkHoleStudio/AnimalSpa</code>.<code>&lt;username&gt;</code>是你计算机的用户名。如果你找不到，请查阅<a target="_blank" rel="noopener" href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/How-to-Access-Hidden-User-Library-folder-on-Mac-OS.html">这个网页</a>。</li>
 <li>如果你害怕存档丢失，请经常备份这个文件夹。</li>
 </ul>
 <h3 id="浴袋-篮子在哪里？"><a href="#浴袋-篮子在哪里？" class="headerlink" title="浴袋&#x2F;篮子在哪里？"></a>浴袋&#x2F;篮子在哪里？</h3><ul>
@@ -487,10 +489,10 @@ flowchart LR
 
 
 <ul>
-<li>实际代码的实现与这张图存在差异。S:M:L &#x3D; 1:2:5，初始矫正为 nM &#x3D; 5 * (1 + 0.01 * 浴池数量) * M，nL &#x3D; 5 * (1 + 0.01 * 浴池数量) * L。</li>
+<li>实际代码的实现与这张图存在差异。S:M:L &#x3D; 1:2:5，初始矫正为 nM &#x3D; 5 * (1 + 0.01 * 浴池数量) * M，nL &#x3D; 5 * (1 + 0.01 * 浴池数量) * L。nM 决定了买东西的 N，nL&#x2F;S 即为顾客泡浴池数量的最大上限（最大为 15）。</li>
 <li>顾客去每层楼的比例数列是 0.51, 0.24, 0.12, 0.06, 0.06，按照每层楼浴池数量降序排序；若规划桌手动设置了按照54321的顺序。顾客进门先去浴池最多的一层，如果这层当前的顾客比例超过了数列的对应项（0.51）则去次多的层，以此类推。</li>
 <li>同一个浴池与<strong>同名</strong>售货机顾客只会去一次（无论是否正常进入&#x2F;买到而扣时间），直到清除记录。</li>
-<li>拿毛巾一般在第一次泡澡前，每次泡澡前都会检查头上有无毛巾，没有就先去拿。</li>
+<li>拿毛巾一般在第一次泡澡前，每次泡澡前都会检查头上有无毛巾，没有就先去拿。还毛巾永远在离开前；如果不放毛巾回收箱，顾客会顶着毛巾走。</li>
 <li>凳子、花洒、VIP 浴池都是顾客经过后会进去，不会主动寻路。</li>
 <li>可以画一个 楼梯→毛巾架→浴池→售货机→回收箱→楼梯 的圈，基本就是顾客的移动路线。圈之外的地方顾客是不会去的。使用这个方法布局，就可以轻松控制顾客会去的设施和不会去的设施，得到想要的效果。<br><img src="/posts/Animal-Spa/%E7%A4%BA%E6%84%8F%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="示意图，黄色是动线，绿色会去，红色不会去"></li>
 </ul>
@@ -792,7 +794,7 @@ flowchart LR
 <p><img src="/posts/Animal-Spa/J9256_1.gif" srcset="/img/loading.gif" lazyload alt="呜哇，客人太多，员工过劳死变成鬼魂了！"></p>
 <h2 id="Copyright"><a href="#Copyright" class="headerlink" title="Copyright"></a>Copyright</h2><ul>
 <li>本文作者为 Polaris_Light，基于 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 协议下共享。</li>
-<li>本文同步发布于官方 QQ 群、官方 Discord、<a target="_blank" rel="noopener" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3481725898">Steam社区</a> 与 <a href="https://gldym.github.io/posts/Animal-Spa">个人博客</a>。</li>
+<li>本文中文版同步发布于官方 QQ 群、官方 Discord、<a target="_blank" rel="noopener" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3481725898">Steam社区</a> 与 <a href="https://gldym.github.io/posts/Animal-Spa">个人博客</a>。</li>
 </ul>
 
                 
@@ -860,7 +862,7 @@ flowchart LR
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年6月14日</div>
+          <div>2025年6月25日</div>
         </div>
       
       
