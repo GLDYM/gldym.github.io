@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa-En/a_1.png">
 <meta property="og:image" content="https://gldym.github.io/posts/Animal-Spa-En/XErvain_1.jpg">
 <meta property="article:published_time" content="2025-05-11T14:59:37.000Z">
-<meta property="article:modified_time" content="2025-09-16T08:45:37.749Z">
+<meta property="article:modified_time" content="2026-01-05T12:16:51.092Z">
 <meta property="article:author" content="Polaris_Light">
 <meta property="article:tag" content="Games">
 <meta property="article:tag" content="Animal-Spa">
@@ -321,7 +321,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          883 字
+          993 字
         
       </span>
     
@@ -332,7 +332,7 @@ p.spoiler {
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -374,7 +374,7 @@ p.spoiler {
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2025年9月16日 下午
+                    本文最后更新于 2026年1月5日 晚上
                   
                 
               </p>
@@ -424,6 +424,13 @@ p.spoiler {
 <li>Beaver: <strong>Watch</strong> guests slipping on puddles 1,000 times. Be cautious when investing points in the final employee training option.</li>
 <li>Golden Monkey: Place the Golden Frog Water Decoration and Golden Koi Statue in a Golden Tile bath. Time to start saving up!</li>
 <li>Red Panda: Accumulate 60 minutes of watching the outdoor view—an infamously tedious unlocking method.</li>
+<li>(DLC 2) Lionhead Rabbit: Guests visit hair salon  100 times.</li>
+<li>(DLC 2) Squirrel Monkey: Guests quenched thirst 100 times.</li>
+<li>(DLC 2) Black Sheep&#x2F;Platypus&#x2F;Sun bear: Get 250 Leaves&#x2F;Snow&#x2F;Sun Points at the Franchise Management Desk.</li>
+<li>(DLC 3) Long-tailed Tit: Distribute 100 flyers.</li>
+<li>(DLC 3) Fairy Wren: Refresh 10 times at staff dispatch desk. Awful.</li>
+<li>(DLC 4) Horned Frog: Guests spill water on the floor 500 times.</li>
+<li>(DLC 4) Desert Frog: Guests use the karaoke 50 ti</li>
 </ul>
 <h3 id="Why-isn’t-my-private-bath-working"><a href="#Why-isn’t-my-private-bath-working" class="headerlink" title="Why isn’t my private bath working?"></a>Why isn’t my private bath working?</h3><ul>
 <li>If you see red question marks, it means you haven’t assigned employees or services. Private baths have two tabs — both need selections.</li>
@@ -435,7 +442,7 @@ p.spoiler {
 <h3 id="Why-is-my-employee-limit-stuck-at-10"><a href="#Why-is-my-employee-limit-stuck-at-10" class="headerlink" title="Why is my employee limit stuck at 10?"></a>Why is my employee limit stuck at 10?</h3><ul>
 <li>You need to invest skill points in the Employee Training Room to increase the limit. The Employee Training Room is found under facility operations.</li>
 </ul>
-<h2 id="How-to-obtain-Maltese-outfits-which-points-could-get-by-each-levels"><a href="#How-to-obtain-Maltese-outfits-which-points-could-get-by-each-levels" class="headerlink" title="How to obtain Maltese outfits &amp; which points could get by each levels"></a>How to obtain Maltese outfits &amp; which points could get by each levels</h2><ul>
+<h3 id="How-to-obtain-Maltese-outfits-which-points-could-get-by-each-levels"><a href="#How-to-obtain-Maltese-outfits-which-points-could-get-by-each-levels" class="headerlink" title="How to obtain Maltese outfits &amp; which points could get by each levels"></a>How to obtain Maltese outfits &amp; which points could get by each levels</h3><ul>
 <li>Outfits must be purchased using points at the <strong>Franchise Management Desk</strong>, which can be found under the Operations facilities.</li>
 <li>Points are awarded once per minute. Each gain equals:  <strong>(Total Save Income × 0.01 + Star Income) &#x2F; (Total Save Time &#x2F; 60)</strong></li>
 <li>For fastest point farming, refer to the mid-to-late game layouts mentioned below.</li>
@@ -449,10 +456,24 @@ p.spoiler {
 </ul>
 <h2 id="Game-Base"><a href="#Game-Base" class="headerlink" title="Game Base"></a>Game Base</h2><h3 id="Likes-Dislikes"><a href="#Likes-Dislikes" class="headerlink" title="Likes &amp; Dislikes"></a>Likes &amp; Dislikes</h3><p><img src="/posts/Animal-Spa-En/EnV4.png" srcset="/img/loading.gif" lazyload alt="EnV4"></p>
 <h3 id="Money-Stars"><a href="#Money-Stars" class="headerlink" title="Money &amp; Stars"></a>Money &amp; Stars</h3><ul>
-<li>Entrance: Depending on the setting of the Operation Desk.</li>
-<li>Leave: See Python codes below. <code>tier</code> is the tier of bath, starting from 0.</li>
+<li><p>Entrance: Depending on the setting of the Operation Desk.</p>
+</li>
+<li><p>Leave: See Image below.</p>
+<pre><code class=" mermaid">%%&#123;init:&#123;&quot;theme&quot;:&quot;default&quot;&#125;&#125;%%
+flowchart LR
+    A&#123;&#123;&quot;Total M=0，Times i=0&quot;&#125;&#125; --&gt; B[&quot;i=i+1&quot;]
+    B --&gt; C[&quot;Once N=(M+3+T)/i，
+    T is the tier of bath&quot;]
+    C --&gt; D&#123;i=1?&#125;
+    D -- Yes --&gt; E[M=M+N]
+    D -- No --&gt; F[M=M+N*1.5]
+    E --&gt; G&#123;&quot;Continue?&quot;&#125;
+    F --&gt; G
+    G -- Yes --&gt; B
+    G -- Thirsty/No more bath/nL&lt;=0 --&gt; H[/&quot;M&quot;/]
+</code></pre></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python">feeList: <span class="hljs-built_in">list</span> = []<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add_num</span>(<span class="hljs-params">tier: <span class="hljs-built_in">int</span></span>) -&gt; <span class="hljs-literal">None</span>:<br>    num: <span class="hljs-built_in">float</span> = <span class="hljs-number">0.0</span>; <br>    num = <span class="hljs-built_in">sum</span>(feeList)<br>    num += <span class="hljs-number">3</span> + tier<br>    num /= <span class="hljs-built_in">len</span>(feeList) + <span class="hljs-number">1</span> <span class="hljs-comment"># Average</span><br>    num *= <span class="hljs-number">1.5</span> <span class="hljs-keyword">if</span> feeList != [] <span class="hljs-keyword">else</span> <span class="hljs-number">1</span>  <span class="hljs-comment"># Multiply 1.5 after the second bath</span><br>    feeList.append(num)<br><br><span class="hljs-comment"># add_num() x N</span><br><br>total_money = <span class="hljs-built_in">round</span>(<span class="hljs-built_in">sum</span>(feeList)) <span class="hljs-comment"># the money u will get when a guest leaves</span><br><br><br><span class="hljs-comment"># tier = 0</span><br><span class="hljs-comment"># 3.0, 4.5, 5.25, 5.906, 6.496, 7.038, 7.541, 8.012, 8.457, 8.880, 9.28, 9.670, 10.042, 10.401, 10.748</span><br><span class="hljs-comment"># total_money = 115</span><br><span class="hljs-comment"># tier = 4</span><br><span class="hljs-comment"># 7.0, 10.5, 12.25, 13.781, 15.159, 16.422, 17.595, 18.695, 19.734, 20.720, 21.662, 22.565, 23.433, 24.270, 25.079</span><br><span class="hljs-comment"># total_money = 269</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># tier = 0</span><br><span class="hljs-comment"># 3.0, 4.5, 5.25, 5.906, 6.496, 7.038, 7.541, 8.012, 8.457, 8.880, 9.28, 9.670, 10.042, 10.401, 10.748</span><br><span class="hljs-comment"># total_money = 115</span><br><span class="hljs-comment"># tier = 4</span><br><span class="hljs-comment"># 7.0, 10.5, 12.25, 13.781, 15.159, 16.422, 17.595, 18.695, 19.734, 20.720, 21.662, 22.565, 23.433, 24.270, 25.079</span><br><span class="hljs-comment"># total_money = 269</span><br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>Amenities: Equals the tier of amenities; if a guest likes the amenity, it will give 1.5 of money.</li>
@@ -468,19 +489,24 @@ p.spoiler {
 </ul>
 <h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><pre><code class=" mermaid">%%&#123;init:&#123;&quot;flowchart&quot;:&#123;&quot;defaultRenderer&quot;:&quot;elk&quot;&#125;,&quot;theme&quot;:&quot;default&quot;&#125;&#125;%%
 flowchart LR
-    A&#123;&#123;&quot;Adjust nM、nL&quot;&#125;&#125; --&gt; B[&quot;Go to the target floor&quot;]
-    B --&gt; C&#123;&quot;nL &lt;= 0&quot;&#125;
+    A&#123;&#123;&quot;Adjus nM、nL&quot;&#125;&#125; --&gt; B[&quot;Go to the target floor&quot;]
+    B --&gt; C&#123;&quot;nL &lt;= 0?&quot;&#125;
     C -- Y --&gt; D[/&quot;Return towel &amp; Leave&quot;/]
-    C -- N --&gt; E&#123;&quot;nM &lt;= M&quot;&#125;
-    E -- N --&gt; F[&quot;Bath&quot;]
-    E -- Y --&gt; I[&quot;Amenities x N&quot;]
-    F -- After S --&gt; H([&quot;nL -= S、nM -= S&quot;])
+    C -- N --&gt; N&#123;&quot;Thirsty &lt;= 0.2?&quot;&#125;
+    E -- Y --&gt; F[&quot;Bath&quot;]
+    E -- N --&gt; I[&quot;Amenities x N&quot;]
+    F -- After S --&gt; H[&quot;nL -= S、nM -= S&quot;]
     I -- Until nM = M --&gt; J[[&quot;Clear the record of Baths &amp; Amenities&quot;]]
     I -- Not found --&gt; F
     H --&gt; C
     J --&gt; C
     F -- Not found --&gt; M[/&quot;Go to another floor, or Return towel &amp; Leave&quot;/]
+    N -- Y --&gt; O[&quot;Buy Water&quot;]
+    N -- N --&gt; E&#123;&quot;nM &lt;= M?&quot;&#125;
+    O -- Thirst &gt;= 0.8 --&gt; C
+    O -- Not found --&gt; M
 </code></pre>
+
 
 <ul>
 <li>The flowchart and the source code of the game have some differences. S:M:L &#x3D; 1:2:5. When a customer spawns, the game adjusts nM &#x3D; 5 * (1 + 0.01 *  Bath Amount * M, nL &#x3D; 5 * (1 + 0.01 *  Bath Amount * L). N of amenities depends on nM, and ceiling(nL&#x2F;S)  is the maximum amount a customer could use (max 15 for 181 bath).</li>
@@ -780,7 +806,7 @@ flowchart LR
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2025年9月16日</div>
+          <div>2026年1月5日</div>
         </div>
       
       
