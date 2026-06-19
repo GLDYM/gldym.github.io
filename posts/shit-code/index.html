@@ -28,8 +28,17 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619222733531.png">
 <meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619223043276.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619223817785.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619223954925.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619224407689.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619224447074.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619225002838.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619225608883.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619230600676.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619230757664.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619231026050.png">
 <meta property="article:published_time" content="2026-06-13T08:42:03.000Z">
-<meta property="article:modified_time" content="2026-06-19T14:32:02.745Z">
+<meta property="article:modified_time" content="2026-06-19T15:14:42.140Z">
 <meta property="article:author" content="Polaris_Light">
 <meta property="article:tag" content="Games">
 <meta property="article:tag" content="Minecraft">
@@ -307,7 +316,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          462 字
+          1.2k 字
         
       </span>
     
@@ -318,7 +327,7 @@ p.spoiler {
         
         
         
-          4 分钟
+          10 分钟
         
       </span>
     
@@ -386,6 +395,34 @@ p.spoiler {
 <p>是的，所有的package、class、field和method都是中文！但是我说实话，这已经是这些模组里面最正常的一个了。分包非常清晰，唯一的问题是把 Event 全堆到了主类，很难不让人怀疑他是为了不让 AI 看懂故意用中文混淆的（）</p>
 <p><img src="/posts/shit-code/image-20260619222733531.png" srcset="/img/loading.gif" lazyload alt="image-20260619222733531"></p>
 <p><img src="/posts/shit-code/image-20260619223043276.png" srcset="/img/loading.gif" lazyload alt="image-20260619223043276"></p>
+<h2 id="手写数据包的-King"><a href="#手写数据包的-King" class="headerlink" title="手写数据包的 King"></a>手写数据包的 King</h2><p><strong>项目地址：<a target="_blank" rel="noopener" href="https://github.com/ribs498/VintageDelight-master">ribs498&#x2F;VintageDelight-master</a></strong></p>
+<p>我尝试迁移这个模组之前 Pink_Cats 已经做了非常多工作了：<a target="_blank" rel="noopener" href="https://github.com/duckgun13476/VintageDelight-master">duckgun13476&#x2F;VintageDelight-master: Port version for this mod.</a>。Ta 还原了 1.0.6 的源代码，并且将其迁移到了 NeoForge 1.21.1，只是留下了一些 Bug 没修。我寻思，这个模组内容也不多，使用量也大，就修复一点点旧 Bug，应该不会有多难吧？然后我就看到了这个：</p>
+<p><img src="/posts/shit-code/image-20260619223817785.png" srcset="/img/loading.gif" lazyload alt="image-20260619223817785"></p>
+<p>datagen 一共三个类，第一个类不是 datagen，第二个类是入口，第三个类只写了腌渍罐。</p>
+<p>难怪一大堆数据包相关的 Bug，合着你数据包和资源包全 TM 是手写的是吧！</p>
+<p><img src="/posts/shit-code/image-20260619223954925.png" srcset="/img/loading.gif" lazyload alt="image-20260619223954925"></p>
+<p>我让 Codex 跑了两天两夜，才终于把这一大堆数据包资源包转为用代码生成；而且由于资源包书写不规范，Codex 还出现了不少错误，经过反馈后三天才搞定。</p>
+<p>你以为这就结束了吗？不不不，这个模组的逆天之处远不及如此：</p>
+<p><img src="/posts/shit-code/image-20260619224407689.png" srcset="/img/loading.gif" lazyload alt="image-20260619224407689"></p>
+<p><img src="/posts/shit-code/image-20260619224447074.png" srcset="/img/loading.gif" lazyload alt="image-20260619224447074"></p>
+<p>17 个一模一样的，没有实现任何功能的类！按照摸里莎的说法，只有 MCr 模组会这样写；要不是这个模组没有 MCr 的影子并且开源，真得怀疑这个模组究竟怎么写出来的了。</p>
+<p>这个模组还有一个经典 Bug，在背包全部装满时，手持厨师帽右键交换头盔，会直接吞掉之前的头盔：</p>
+<p><img src="/posts/shit-code/image-20260619225002838.png" srcset="/img/loading.gif" lazyload alt="image-20260619225002838"></p>
+<p>那么这个模组究竟干了什么呢？让我们来看看：</p>
+<p><img src="/posts/shit-code/image-20260619225608883.png" srcset="/img/loading.gif" lazyload alt="image-20260619225608883"></p>
+<p>它先将玩家的头盔脱下，塞进背包，然后再装上厨师帽。这个过程没有检查背包是否已满，因此如果背包是满的，之前的头盔就会塞不进背包而直接吞掉。</p>
+<p>但是问题又来了：原版的 ArmorItem 本来就有右键换掉身上装备的功能，这样写不是纯纯没事找事？于是我往上看……</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scala">public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ChefHatItem</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Item</span> </span>&#123;<br></code></pre></td></tr></table></figure>
+
+<p>？神金啊？为什么不继承 ArmorItem ？然后我让 Codex 改成继承 ArmorItem，模型变成了基础皮革套，我才想起来如果写盔甲，模型是需要用代码定义的。于是我又让 Codex 按照原本的模型改成代码，炸了。于是我去看了这个模型：</p>
+<p><img src="/posts/shit-code/image-20260619230600676.png" srcset="/img/loading.gif" lazyload alt="image-20260619230600676"></p>
+<p>乍一看一切正常对吧？如果我们放到 Blockbench 里面去看呢？</p>
+<p><img src="/posts/shit-code/image-20260619230757664.png" srcset="/img/loading.gif" lazyload alt="image-20260619230757664"></p>
+<p>我草，怎么不是箱型 UV 啊？合着你就为了省点贴图大小，包了这么一顿饺子是吧？</p>
+<p>不仅于此，为了实现手上的贴图和戴在头上的模型不同，Ribs 还干了这么一茬事：</p>
+<p><img src="/posts/shit-code/image-20260619231026050.png" srcset="/img/loading.gif" lazyload alt="image-20260619231026050"></p>
+<p>不是，<code>&quot;loader&quot;: &quot;forge:separate_transforms&quot;</code> 是什么鬼东西啊？为了在不同渲染状态下渲染不同模型，这是从什么犄角旮旯里挖出来的特性啊？</p>
+<p>我修了一晚上这个东西，无果，遂将其删除。拉倒吧您！</p>
 
                 
               </div>
