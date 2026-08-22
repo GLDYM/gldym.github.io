@@ -37,8 +37,10 @@
 <meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619230600676.png">
 <meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619230757664.png">
 <meta property="og:image" content="https://gldym.github.io/posts/shit-code/image-20260619231026050.png">
+<meta property="og:image" content="https://media.forgecdn.net/attachments/1723/12/2026-06-08_03-33-13-png.png">
+<meta property="og:image" content="https://gldym.github.io/posts/shit-code/f0e770b4a880a90554c396054af6a92a.png">
 <meta property="article:published_time" content="2026-06-13T08:42:03.000Z">
-<meta property="article:modified_time" content="2026-06-19T15:29:07.265Z">
+<meta property="article:modified_time" content="2026-08-22T06:33:09.494Z">
 <meta property="article:author" content="Polaris_Light">
 <meta property="article:tag" content="Games">
 <meta property="article:tag" content="Minecraft">
@@ -316,7 +318,7 @@ p.spoiler {
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2.3k 字
         
       </span>
     
@@ -327,7 +329,7 @@ p.spoiler {
         
         
         
-          10 分钟
+          20 分钟
         
       </span>
     
@@ -369,7 +371,7 @@ p.spoiler {
               <p id="updated-time" class="note note-info" style="">
                 
                   
-                    本文最后更新于 2026年6月19日 晚上
+                    本文最后更新于 2026年8月22日 下午
                   
                 
               </p>
@@ -423,6 +425,37 @@ p.spoiler {
 <p><img src="/posts/shit-code/image-20260619231026050.png" srcset="/img/loading.gif" lazyload alt="image-20260619231026050"></p>
 <p>不是，<code>&quot;loader&quot;: &quot;forge:separate_transforms&quot;</code> 是什么鬼东西啊？为了在不同渲染状态下渲染不同模型，这是从什么犄角旮旯里挖出来的特性啊？</p>
 <p>我修了一晚上这个东西，无果，遂将其删除。拉倒吧您！</p>
+<blockquote>
+<p>Vintaged Delight 四宗罪</p>
+<p>1 所有数据包全部手写，一大堆标签战利品表错误，标签破坏者</p>
+<p>2 大量一模一样一字不改的 class，人机感如同 MCr</p>
+<p>3 盔甲和方块物品统统继承 Item，Mojang 提供的基本类一个不用，非要自己搓轮子，整出吞头盔等神奇 Bug</p>
+<p>4 为了缩减贴图大小，所有模型全部用逐面材质，能复用的贴图全部复用，想改都没法改</p>
+</blockquote>
+<h2 id="Lambda-仙人"><a href="#Lambda-仙人" class="headerlink" title="Lambda 仙人"></a>Lambda 仙人</h2><p><strong>项目地址：<a target="_blank" rel="noopener" href="https://github.com/cassiancc/expanded-storage">Cassian 的源代码留档，原作者 Compasses</a></strong></p>
+<p>这个模组作者本身也值得一说。让我们有请模组界的左慈，转生三次的金仙，拥有十八化身之人，<a target="_blank" rel="noopener" href="https://www.mcmod.cn/author/22009.html">Compasses</a>！第一次因为巴以问题销号 CurseForge，第二次则因为某个整合包不发给 Ta 创造飞行而删库跑路，第三次更是一言不发直接跑路。尽管三个号几乎看不出关联，但是名字的内在逻辑还是能证明三位一体。</p>
+<p>我们的关注对象是这个主类：<a target="_blank" rel="noopener" href="https://github.com/cassiancc/expanded-storage/blob/expandedstorage/1.20.1/common/src/main/java/compasses/expandedstorage/impl/CommonMain.java">compasses.expandedstorage.impl.CommonMain</a>。虽说这已经是旧版本的代码了，但是目前最常用的版本依然是这个。一个正常的主类是什么样的呢？我在前面已经说过了，应该只包含一些常量和一些内容、事件和配置的注册。而这个主类干了什么呢……</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs java">CommonMain.registerMutationBehaviour(isChestBlock, MutationMode.MERGE, (context, level, state, pos, stack) -&gt; &#123;<br>    <span class="hljs-type">Player</span> <span class="hljs-variable">player</span> <span class="hljs-operator">=</span> context.getPlayer();<br>    <span class="hljs-keyword">if</span> (player == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> ToolUsageResult.fail();<br>    &#125;<br>    <span class="hljs-keyword">if</span> (state.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) == EsChestType.SINGLE) &#123;<br>        <span class="hljs-type">CompoundTag</span> <span class="hljs-variable">tag</span> <span class="hljs-operator">=</span> stack.getOrCreateTag();<br>        <span class="hljs-keyword">if</span> (tag.contains(<span class="hljs-string">&quot;pos&quot;</span>)) &#123;<br>            <span class="hljs-type">BlockPos</span> <span class="hljs-variable">otherPos</span> <span class="hljs-operator">=</span> NbtUtils.readBlockPos(tag.getCompound(<span class="hljs-string">&quot;pos&quot;</span>));<br>            <span class="hljs-type">BlockState</span> <span class="hljs-variable">otherState</span> <span class="hljs-operator">=</span> level.getBlockState(otherPos);<br>            <span class="hljs-type">BlockPos</span> <span class="hljs-variable">delta</span> <span class="hljs-operator">=</span> otherPos.subtract(pos);<br>            <span class="hljs-type">Direction</span> <span class="hljs-variable">direction</span> <span class="hljs-operator">=</span> Direction.fromDelta(delta.getX(), delta.getY(), delta.getZ());<br><br>            <span class="hljs-keyword">if</span> (direction != <span class="hljs-literal">null</span>) &#123;<br>                <span class="hljs-keyword">if</span> (state.getBlock() == otherState.getBlock()) &#123;<br>                    <span class="hljs-keyword">if</span> (otherState.getValue(AbstractChestBlock.CURSED_CHEST_TYPE) == EsChestType.SINGLE) &#123;<br>                        <span class="hljs-keyword">if</span> (state.getValue(BlockStateProperties.HORIZONTAL_FACING) == otherState.getValue(BlockStateProperties.HORIZONTAL_FACING)) &#123;<br>                            <span class="hljs-type">boolean</span> <span class="hljs-variable">firstIsDinnerbone</span> <span class="hljs-operator">=</span> level.getBlockEntity(pos) <span class="hljs-keyword">instanceof</span> OpenableBlockEntity blockEntity &amp;&amp; blockEntity.isDinnerbone();<br>                            <span class="hljs-type">boolean</span> <span class="hljs-variable">secondIsDinnerbone</span> <span class="hljs-operator">=</span> level.getBlockEntity(otherPos) <span class="hljs-keyword">instanceof</span> OpenableBlockEntity blockEntity &amp;&amp; blockEntity.isDinnerbone();<br>                            <span class="hljs-keyword">if</span> (firstIsDinnerbone == secondIsDinnerbone) &#123;<br>                                <span class="hljs-keyword">if</span> (!level.isClientSide()) &#123;<br>                                    <span class="hljs-type">EsChestType</span> <span class="hljs-variable">chestType</span> <span class="hljs-operator">=</span> AbstractChestBlock.getChestType(state.getValue(BlockStateProperties.HORIZONTAL_FACING), direction);<br>                                    level.setBlockAndUpdate(pos, state.setValue(AbstractChestBlock.CURSED_CHEST_TYPE, chestType));<br>                                    <span class="hljs-comment">// note: other state is updated via neighbour update</span><br>                                    tag.remove(<span class="hljs-string">&quot;pos&quot;</span>);<br>                                    <span class="hljs-comment">//noinspection ConstantConditions</span><br>                                    player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_end&quot;</span>), <span class="hljs-literal">true</span>);<br>                                &#125;<br>                                <span class="hljs-keyword">return</span> ToolUsageResult.slowSuccess();<br>                            &#125;<br>                            player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_wrong_block&quot;</span>), <span class="hljs-literal">true</span>);<br>                        &#125; <span class="hljs-keyword">else</span> &#123;<br>                            <span class="hljs-comment">//noinspection ConstantConditions</span><br>                            player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_wrong_facing&quot;</span>), <span class="hljs-literal">true</span>);<br>                        &#125;<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        <span class="hljs-comment">//noinspection ConstantConditions</span><br>                        player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_already_double_chest&quot;</span>), <span class="hljs-literal">true</span>);<br>                    &#125;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    <span class="hljs-comment">//noinspection ConstantConditions</span><br>                    player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_wrong_block&quot;</span>), <span class="hljs-literal">true</span>);<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">//noinspection ConstantConditions</span><br>                player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_not_adjacent&quot;</span>), <span class="hljs-literal">true</span>);<br>            &#125;<br>            tag.remove(<span class="hljs-string">&quot;pos&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (!level.isClientSide()) &#123;<br>                tag.put(<span class="hljs-string">&quot;pos&quot;</span>, NbtUtils.writeBlockPos(pos));<br>                <span class="hljs-comment">//noinspection ConstantConditions</span><br>                player.displayClientMessage(Component.translatable(<span class="hljs-string">&quot;tooltip.expandedstorage.storage_mutator.merge_start&quot;</span>, Utils.ALT_USE), <span class="hljs-literal">true</span>);<br>            &#125;<br>            <span class="hljs-keyword">return</span> ToolUsageResult.fastSuccess();<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ToolUsageResult.fail();<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>很明显这是一个 Method，但是他被写成了 Lambda，注册为箱子切换器的行为，而且还是在主类里面……这个主类把一大堆应该放在<code>init</code>、<code>client</code> 以及物品类本身的逻辑全混在了主类，搞出了个3k行的主类，耦合程度极高。</p>
+<p>我在尝试修复其与机械动力的兼容时候，也想过是否修缮这部分；但是这个主类写的实在是过于错综复杂，重构的难度比重新写一个模组还高。在尝试了多次依然没有得到很好的结果后，我选择就此摆烂……</p>
+<p>我后来才知道，<a target="_blank" rel="noopener" href="https://www.mcmod.cn/author/33674.html">Cassian</a> 也是经常接手模组的开发者，维护了相当多现在常用的模组；但是连 Cassian 也是对这个模组束手无策。</p>
+<p>那么这玩意后来改善了吗？在 Expanded Storage 26.1.2 的代码中，这个主类已经被大幅度修剪，基本就是个普通的主类了……你问我在哪里看 Expanded Storage 26.1.2 的代码？那当然是删库了！</p>
+<h2 id="反射大师"><a href="#反射大师" class="headerlink" title="反射大师"></a>反射大师</h2><p><strong>项目地址：<a target="_blank" rel="noopener" href="https://www.curseforge.com/minecraft/mc-mods/backpack-side-gui">Backpack Side GUI</a></strong></p>
+<p><img src="https://media.forgecdn.net/attachments/1723/12/2026-06-08_03-33-13-png.png" srcset="/img/loading.gif" lazyload alt="2026-06-08_03.33.13.png"></p>
+<p>我第一眼看到这个模组，一下子就爱上了：这是个好东西啊！让背包方便了不少。放入整合包，一跑 Spark，20% 占用，全是 <code>getMethod()</code> 。吓得我赶紧掏出我的 Jadx 反编译：</p>
+<p><img src="/posts/shit-code/f0e770b4a880a90554c396054af6a92a.png" srcset="/img/loading.gif" lazyload alt="f0e770b4a880a90554c396054af6a92a"></p>
+<p>……好家伙，虽然这个模组是 Sophisticated Backpack 的附属，并联动了 CuriosAPI 与 JEI，但是！所有代码中！没有一个其他模组的类！统统是反射！</p>
+<p>（当场被气晕。）</p>
+<p>这个模组有这样几个包：</p>
+<ul>
+<li><code>client</code>：1个 <code>ClientBootstrap</code> 类，1个 <code>SideBackpackClient</code>类；</li>
+<li><code>compat</code>：1个 <code>JeiReflectionCompat</code>类；</li>
+<li><code>network</code>：20+ 个网络包；</li>
+<li><code>server</code>：1个 <code>ServerBackpackAccess</code> 类；</li>
+<li>1个配置文件类，1个主类。</li>
+</ul>
+<p>是不是感觉有什么不对？这么复杂的模组却只有个位数类？没错 ，<code>SideBackpackClient</code> 1900行，<code>ServerBackpackAccess</code> 2670 行…… 写 Python 都不带这么写的。</p>
 
                 
               </div>
@@ -489,7 +522,7 @@ p.spoiler {
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2026年6月19日</div>
+          <div>2026年8月22日</div>
         </div>
       
       
